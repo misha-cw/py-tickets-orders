@@ -66,7 +66,7 @@ class MovieViewSet(viewsets.ModelViewSet):
         if genres:
             genre_ids = [int(id) for id in genres.split(",")]
             queryset = queryset.filter(genres__id__in=genre_ids)
-        if self.action in ("list", "retrive"):
+        if self.action in ("list", "retrieve"):
             queryset = queryset.prefetch_related("genres", "actors")
         return queryset.distinct()
 
